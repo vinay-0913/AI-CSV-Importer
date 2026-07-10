@@ -1,0 +1,17 @@
+# Environment variables — NEVER commit these
+.env
+.env.local
+.env.*.local
+backend/.env
+
+# Dependencies
+node_modules
+
+# Build output
+dist
+.next
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
