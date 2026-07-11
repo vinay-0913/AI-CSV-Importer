@@ -1,0 +1,174 @@
+@import "tailwindcss";
+
+/* ─── Class-based dark mode for Tailwind v4 ──────────────────────────────── */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ─── DESIGN.md Token System ─────────────────────────────────────────────── */
+/* Light mode (white-canvas editorial, per DESIGN.md) */
+:root {
+  /* Brand & Primary */
+  --color-primary:          #181d26;
+  --color-primary-active:   #0d1218;
+  --color-on-primary:       #ffffff;
+  --color-on-dark:          #ffffff;
+
+  /* Text */
+  --color-ink:              #181d26;
+  --color-body:             #333840;
+  --color-muted:            #41454d;
+
+  /* Surfaces */
+  --color-canvas:           #ffffff;
+  --color-surface-soft:     #f8fafc;
+  --color-surface-strong:   #e0e2e6;
+  --color-surface-dark:     #181d26;
+  --color-surface-dark-el:  #1d1f25;
+
+  /* Borders */
+  --color-hairline:         #dddddd;
+  --color-border-strong:    #9297a0;
+
+  /* Signature card surfaces */
+  --color-sig-coral:        #aa2d00;
+  --color-sig-forest:       #0a2e0e;
+  --color-sig-cream:        #f5e9d4;
+  --color-sig-peach:        #fcab79;
+  --color-sig-mint:         #a8d8c4;
+  --color-sig-yellow:       #f4d35e;
+  --color-sig-mustard:      #d9a441;
+
+  /* Semantic */
+  --color-link:             #1b61c9;
+  --color-link-active:      #1a3866;
+  --color-info:             #254fad;
+  --color-info-border:      #458fff;
+  --color-success:          #006400;
+  --color-success-border:   #39bf45;
+  --color-error:            #aa2d00;
+  --color-error-border:     #d95a30;
+
+  /* Border radius scale */
+  --radius-xs:              2px;
+  --radius-sm:              6px;
+  --radius-md:              10px;
+  --radius-lg:              12px;
+  --radius-pill:            9999px;
+
+  /* Spacing scale (4px base unit) */
+  --space-xxs:  4px;
+  --space-xs:   8px;
+  --space-sm:   12px;
+  --space-md:   16px;
+  --space-lg:   24px;
+  --space-xl:   32px;
+  --space-xxl:  48px;
+  --space-section: 96px;
+
+  /* Typography */
+  --font-haas:  "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-pricing: "Inter Display", "Inter", system-ui, sans-serif;
+}
+
+/* ─── Dark mode overrides ─────────────────────────────────────────────────── */
+.dark {
+  --color-canvas:           #0f1117;
+  --color-surface-soft:     #161a22;
+  --color-surface-strong:   #1e2330;
+  --color-ink:              #f0f2f5;
+  --color-body:             #b8bdc8;
+  --color-muted:            #6b7280;
+  --color-hairline:         #252a35;
+  --color-border-strong:    #374151;
+  --color-sig-cream:        #1e1a13;
+  --color-link:             #5b8ef0;
+  --color-link-active:      #90aff5;
+  --color-info:             #4a74d4;
+  --color-info-border:      #6b9ef7;
+  --color-success:          #22c55e;
+  --color-success-border:   #4ade80;
+  --color-error:            #f87171;
+  --color-error-border:     #fca5a5;
+  --color-primary:          #f0f2f5;
+  --color-primary-active:   #ffffff;
+  --color-on-primary:       #0f1117;
+}
+
+/* ─── Animations ──────────────────────────────────────────────────────────── */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes indeterminate {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(400%); }
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes pulseSubtle {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.6; }
+}
+
+/* ─── Utility Classes ────────────────────────────────────────────────────── */
+
+@utility animate-fadeIn {
+  animation: fadeIn 0.35s ease-out both;
+}
+
+@utility animate-indeterminate {
+  animation: indeterminate 1.6s ease-in-out infinite;
+}
+
+@utility animate-spin-slow {
+  animation: spinSlow 3s linear infinite;
+}
+
+@utility animate-pulse-subtle {
+  animation: pulseSubtle 2s ease-in-out infinite;
+}
+
+/* ─── Base Styles ─────────────────────────────────────────────────────────── */
+
+@layer base {
+  html {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+  }
+
+  body {
+    font-family: var(--font-haas);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--color-body);
+    background-color: var(--color-canvas);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  /* Scrollbar — hairline style */
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--color-hairline);
+    border-radius: var(--radius-pill);
+  }
+}
