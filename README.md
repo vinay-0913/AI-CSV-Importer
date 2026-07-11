@@ -45,50 +45,6 @@ This application accepts all of them and maps every row to a **single, consisten
 
 ---
 
-## Project Structure
-
-```
-GrowEasy/
-├── backend/                        # Express 5 + TypeScript API
-│   └── src/
-│       ├── index.ts                # Server entry — CORS, JSON, routes
-│       ├── routes/
-│       │   └── csv.routes.ts       # POST /upload  &  POST /process
-│       ├── services/
-│       │   ├── csv.service.ts      # CSV parsing, delimiter detection, BOM handling
-│       │   └── ai.service.ts       # Gemini AI batching, retry, aggregation
-│       ├── middleware/
-│       │   └── errorHandler.ts     # AppError class, global error handler, asyncHandler
-│       ├── types/
-│       │   └── index.ts            # CRMRecord, SkippedRecord, ProcessingResult types
-│       └── utils/
-│           ├── prompt.ts           # System prompt + batch prompt builder
-│           └── validators.ts       # Post-AI field sanitization & validation
-│
-├── frontend/                       # Next.js 16 + React 19 + Tailwind CSS v4
-│   ├── app/
-│   │   ├── globals.css             # Design system tokens (CSS vars), animations
-│   │   ├── layout.tsx              # Root layout — font, meta, ThemeProvider
-│   │   └── page.tsx                # 4-step wizard orchestrator
-│   ├── components/
-│   │   ├── FileUpload.tsx          # Drag-and-drop zone with validation
-│   │   ├── DataTable.tsx           # Virtualized scrollable table
-│   │   ├── StepIndicator.tsx       # Animated step progress bar
-│   │   ├── ProcessingOverlay.tsx   # Full-screen AI processing modal
-│   │   ├── ResultsView.tsx         # Stats cards, tabs, download button
-│   │   ├── ThemeProvider.tsx       # React context for light/dark mode
-│   │   └── ThemeToggle.tsx         # Sun/moon toggle button
-│   └── lib/
-│       ├── api.ts                  # uploadCSV(), processRecords(), checkHealth()
-│       └── types.ts                # Shared TypeScript interfaces (mirrors backend)
-│
-├── docker-compose.yml              # Backend (3001) + Frontend (3000)
-├── .env.example                    # Environment variable template
-└── package.json                    # Root: concurrently dev/build scripts
-```
-
----
-
 ## Setup & Installation
 
 ### Prerequisites
